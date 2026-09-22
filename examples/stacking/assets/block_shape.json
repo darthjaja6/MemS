@@ -1,0 +1,65 @@
+{
+  "parts": [
+    {
+      "shape": "box",
+      "size": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "landmarks": {
+    "nnn": [
+      -0.5,
+      -0.5,
+      -0.5
+    ],
+    "nnp": [
+      -0.5,
+      -0.5,
+      0.5
+    ],
+    "npn": [
+      -0.5,
+      0.5,
+      -0.5
+    ],
+    "npp": [
+      -0.5,
+      0.5,
+      0.5
+    ],
+    "pnn": [
+      0.5,
+      -0.5,
+      -0.5
+    ],
+    "pnp": [
+      0.5,
+      -0.5,
+      0.5
+    ],
+    "ppn": [
+      0.5,
+      0.5,
+      -0.5
+    ],
+    "ppp": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "top": [
+      0,
+      0,
+      0.5
+    ],
+    "bottom": [
+      0,
+      0,
+      -0.5
+    ]
+  },
+  "uncertainty": "Visible cubes have subtly rounded corners; box approximates nominal face extent and corner landmarks. Initial physical dimensions unresolved; instance scales require calibrated fit."
+}

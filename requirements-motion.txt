@@ -1,0 +1,6 @@
+numpy==1.26.0
+scipy==1.15.3
+mplib==0.2.1
+drake==1.51.1
+trimesh==4.5.1
+toppra==0.6.10

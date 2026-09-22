@@ -1,0 +1,73 @@
+// Mock scene showing robot state, camera calibration, shapes and object locations.
+// Replace mock values with measured or calculated values. Remove // comments before loading as JSON.
+{
+  "frame": "world", // Shared coordinate system in which positions and directions are expressed.
+  "units": "metres", // Length unit; joint angles use radians.
+  "robots": { // Robot models and current states read from the robot or simulator.
+    "arm": { // Robot ID used when requesting movements or tracking held objects.
+      "urdf": "robot/arm.urdf", // Unified Robot Description Format file: rigid parts (links), joints and limits.
+      "tip": "tool_link", // Name of the robot link whose position and orientation are controlled.
+      "joint_names": ["j1", "j2", "j3", "j4", "j5", "j6"], // Ordered arm joints.
+      "joints": { // Current joint values, keyed by URDF joint name.
+        "j1": 0.0, // Joint 1 angle in radians.
+        "j2": -0.6, // Joint 2 angle in radians.
+        "j3": 1.2, // Joint 3 angle in radians.
+        "j4": 0.0, // Joint 4 angle in radians.
+        "j5": -0.6, // Joint 5 angle in radians.
+        "j6": 0.0 // Joint 6 angle in radians.
+      },
+      "pose": [0.3, 0.0, 0.95, 1, 0, 0, 0], // Measured tip position XYZ, then orientation as a quaternion (four rotation values: W, X, Y, Z).
+      "base_transform": [ // 4×4 transform mapping robot-base coordinates into world coordinates.
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 1, 0.75],
+        [0, 0, 0, 1]
+      ],
+      "tool": { // Gripper or other end-mounted device; coordinates are relative to the tip link.
+        "point_in_tip": [0.10, 0, 0], // Offset from the tip origin to the interaction point, in metres.
+        "local_approach": [1, 0, 0], // Forward direction for approaching an object.
+        "local_closing": [0, 1, 0] // Direction along which the jaws close.
+      }
+    }
+  },
+  "cameras": { // Measured camera calibration, or calibration provided by the simulator.
+    "overhead": { // Camera ID used to associate image pixels with calibration.
+      "K": [ // Camera intrinsic matrix: [fx, 0, cx], [0, fy, cy], [0, 0, 1]; fx/fy are focal lengths and cx/cy the optical centre, all in pixels.
+        [600, 0, 320],
+        [0, 600, 240],
+        [0, 0, 1]
+      ],
+      "T_base_camera": [ // Camera-to-world transform; camera axes are right, down, forward.
+        [1, 0, 0, 0],
+        [0, -1, 0, 0],
+        [0, 0, -1, 1.5],
+        [0, 0, 0, 1]
+      ]
+    }
+  },
+  "assets": { // Reusable shape definitions shared by object instances.
+    "cup_shape": { // Asset ID referenced by an object's asset field.
+      "file": "assets/cup.json" // Shape file with local geometry and landmarks: named points matched to image pixels.
+    }
+  },
+  "surfaces": { // Reference planes used for pixel-to-world measurements.
+    "table": { // Surface ID used in measurement requests.
+      "normal": [0, 0, 1], // Unit-length vector perpendicular to the plane, in world coordinates.
+      "offset_m": -0.75 // Plane equation: normal · point + offset_m = 0; here z = 0.75 m.
+    }
+  },
+  "objects": { // Observed object instances in the world.
+    "block": { // Object ID used in scene updates and action targets.
+      "shape": "box", // Primitive geometry type.
+      "position": [0, -0.2, 0.78], // World XYZ of the shape's local origin; here the box centre.
+      "quaternion": [1, 0, 0, 0], // Local-to-world orientation in WXYZ order; these values mean no rotation.
+      "size": [0.04, 0.04, 0.06] // Full box dimensions along its local XYZ axes, in metres.
+    },
+    "cup": { // Another object instance, using a reusable asset.
+      "asset": "cup_shape", // Reference to the shape in assets.
+      "position": [0.15, -0.2, 0.75], // World position of the asset origin; assume its bottom centre.
+      "quaternion": [1, 0, 0, 0], // Asset orientation in world coordinates, WXYZ.
+      "scale": [0.08, 0.08, 0.10] // Multipliers along local XYZ; this mock asset spans one unit per axis, giving dimensions in metres.
+    }
+  }
+}

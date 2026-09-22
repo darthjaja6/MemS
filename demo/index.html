@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Spatial Memory</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script type="importmap">
+      { "imports": { "three": "/vendor/three.module.js" } }
+    </script>
+  </head>
+  <body>
+    <aside id="sidebar">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="m16 4 10.4 6v12L16 28 5.6 22V10L16 4Z" stroke="currentColor" stroke-width="1.6"/><path d="m6 10 10 6 10-6M16 16v12" stroke="currentColor" stroke-width="1.6"/><path d="m11 7 10 6v6" stroke="currentColor" stroke-width="1.6"/></svg></span><strong>Spatial Memory</strong>
+      </div>
+      <button id="live" class="live-button active">
+        <span class="live-dot"></span>Current scene<span class="arrow"
+          >↗</span
+        >
+      </button>
+      <section class="object-section">
+        <div class="section-heading">
+          <h2>Objects</h2>
+          <span id="object-count">0</span>
+        </div>
+        <div id="objects"></div>
+      </section>
+      <section class="history-section">
+        <div class="section-heading">
+          <h2>Run sessions</h2>
+          <span id="run-count"></span>
+        </div>
+        <nav id="runs" aria-label="Recorded robot runs">
+          <p class="empty">Loading runs…</p>
+        </nav>
+      </section>
+      <div class="connection">
+        <span id="connection">Connecting…</span><span id="updated"></span>
+      </div>
+    </aside>
+    <main>
+      <header>
+        <div>
+          <div class="eyebrow" id="view-mode">WORKSPACE</div>
+          <h1 id="view-title">Current scene</h1>
+        </div>
+        <div class="header-status"><span id="sample-badge" class="sample-badge" hidden>Simulation example</span><span id="run-status" class="badge">Saved state</span></div>
+      </header>
+      <section id="viewport" aria-label="Interactive 3D spatial memory">
+        <div class="scene-heading">
+          <strong id="robot-name">Robot</strong><span id="pose-status">Loading robot…</span>
+        </div>
+        <div id="loading">Loading scene…</div>
+        <div id="trajectory-legend" hidden>
+          <div id="trajectory-keys"></div><span class="path-explanation">Solid: elapsed · Faint: later</span><span id="trajectory-source">Recorded joints</span>
+        </div>
+
+        <div class="view-controls">
+          <span>Drag to orbit · Scroll to zoom</span
+          ><button id="paths-toggle" aria-pressed="true" title="Show or hide recorded paths">Paths</button
+          ><button id="fit-view" title="Frame the objects and robot">Fit workspace</button
+          ><span class="control-divider" aria-hidden="true"></span
+          ><button id="perspective" aria-pressed="true">Perspective</button
+          ><button id="top" aria-pressed="false">Top</button>
+        </div>
+      </section>
+        <aside id="selection-panel" aria-label="Selected object details" hidden>
+          <div class="selection-label">Selected object</div>
+          <h2 id="selected-name">Object</h2>
+          <span id="selected-kind"></span>
+          <dl>
+            <div><dt>Position · m</dt><dd id="selected-position">—</dd></div>
+            <div><dt>Dimensions · m</dt><dd id="selected-dimensions">—</dd></div>
+            <div><dt>Source</dt><dd id="selected-source">—</dd></div>
+          </dl>
+          <button id="focus-object" type="button">Focus object</button>
+        </aside>
+      <section id="playback" hidden aria-label="Trajectory playback">
+        <div class="playback-heading">
+          <span id="action-name">Ready to replay</span
+          ><span id="run-detail"></span>
+        </div>
+        <div class="timeline">
+          <input
+            id="scrubber"
+            type="range"
+            min="0"
+            max="1"
+            value="0"
+            step="any"
+            aria-label="Replay position"
+          />
+          <div id="checkpoints"></div>
+        </div>
+        <div class="transport">
+          <button id="restart" aria-label="Restart replay" title="Restart">
+            ↺</button
+          ><button id="play" aria-label="Play replay">
+            ▶ <span>Play</span></button
+          ><span id="timecode">0:00 / 0:00</span
+          ><label class="speed-label"
+            >Speed
+            <select id="speed" aria-label="Playback speed">
+              <option value="0.5">0.5×</option>
+              <option value="1" selected>1×</option>
+              <option value="2">2×</option>
+              <option value="4">4×</option>
+              <option value="8">8×</option>
+            </select></label
+          >
+        </div>
+      </section>
+      <div id="message" role="status" hidden></div>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

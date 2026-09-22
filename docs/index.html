@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="Spatial Memory: faster robot decisions through reusable 3D scenes and a predefined geometry library. Method, demo, and open-source implementation.">
+  <meta name="spatial-memory:repository" content="">
+  <title>Spatial Memory — Project overview</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header shell">
+    <a class="wordmark" href="./"><img src="assets/mark.svg" width="26" height="30" alt="">Spatial Memory</a>
+    <nav aria-label="Sections"><a href="#approach">Approach</a><a href="#recording">Demo</a><a href="#implementation">Implementation</a></nav>
+  </header>
+  <main id="main" class="shell">
+    <section class="project-header">
+      <p class="eyebrow">Open-source research project</p>
+      <h1>Spatial Memory</h1>
+      <p class="subtitle">Spatial memory for faster robot decisions</p>
+      <p class="summary">Build a 3D scene once, then update what changes. Spatial Memory lets an agent reuse its understanding of the environment and call existing geometry scripts for subsequent actions, reducing repeated reconstruction and code generation.</p>
+      <div class="project-links"><a href="README.md" data-source>Code ↗</a><a href="README.md" data-source data-path="skills/spatial-memory/SKILL.md">Agent skill ↗</a><a href="#recording">Watch the demo ↓</a></div>
+    </section>
+
+    <section class="text-section" id="approach">
+      <h2>How it saves work</h2>
+      <p><strong>Maintain a 3D reconstruction during execution.</strong> The agent describes object shapes at the start. The scene retains their geometry, dimensions, and spatial relationships; new observations update their placement as the robot acts.</p>
+      <p><strong>Estimate positions with a predefined geometry library.</strong> The agent selects image measurements. Existing scripts use camera calibration to calculate positions, orientations, and dimensions, then save the results in the scene. Later actions reuse these scripts and the saved geometry.</p>
+    </section>
+
+    <section id="recording" class="project-section">
+      <h2>Demo: spatial memory during a task</h2>
+      <p class="section-intro">Two ARX X5 arms stack blocks while the viewer shows their motion, tool paths, and changes to remembered object poses. The same block shape is reused across instances and throughout the task.</p>
+      <figure class="recording-figure">
+        <video controls muted loop playsinline preload="metadata" poster="assets/workspace.png" width="1600" height="1000">
+          <source src="assets/stacking.mp4" type="video/mp4">
+          <a href="assets/stacking.mp4">Download the recorded viewer replay</a>
+        </video>
+        <figcaption><strong>Simulation recording · 1× motion time.</strong> Robot motion comes from joint commands and measured checkpoints. Object estimates change at nine saved scene updates; movement between those updates is not reconstructed.</figcaption>
+      </figure>
+      <div class="recording-notes"><p><strong>Explore locally.</strong> Select an object to inspect its pose, dimensions, and measurement source. Scrub the timeline to see the scene at recorded updates. Blue and orange paths distinguish the arms.</p><p><strong>What this demonstrates.</strong> Reusing and updating a scene during a task. Decision time and token savings have not yet been measured; this replay follows the recorded motion clock.</p></div>
+    </section>
+
+    <section id="method" class="project-section">
+      <h2>From observations to actions</h2>
+      <div class="workflow" role="img" aria-label="Observe and model, store shared spatial memory, plan and execute; new observations update the same memory.">
+        <div><span class="step-number">01</span><h3>Observe &amp; model</h3><p>Images, camera calibration,<br>reusable object geometry</p></div><span class="flow-arrow" aria-hidden="true">→</span>
+        <div class="scene-node"><span class="step-number">02</span><h3>Spatial memory</h3><p><code>scene.json</code><br>Objects · surfaces · robot state</p></div><span class="flow-arrow" aria-hidden="true">→</span>
+        <div><span class="step-number">03</span><h3>Plan &amp; execute</h3><p>Geometric queries,<br>actions and checkpoints</p></div>
+        <p class="feedback">↖ New observations update the same scene</p>
+      </div>
+      <div class="method-details">
+        <article><h3>Reusable shape, individual state</h3><p>The agent models object structure once. Similar objects reference the same asset, with their own position, orientation, scale, and color. Landmarks and shape parameters give calculations concrete features to measure.</p></article>
+        <article><h3>Geometry from observations</h3><p>Scripts use camera calibration and image correspondences to estimate locations and fit dimensions. Multi-view measurements or known surfaces provide geometric constraints. Shape assumptions and measurement uncertainty still matter.</p></article>
+        <article><h3>Updates during execution</h3><p>The agent plans action sequences with observation checkpoints. Measured robot state and attachment transforms can update poses programmatically; new visual measurements correct estimates. Geometry is revised when observations require it.</p></article>
+      </div>
+    </section>
+
+    <section id="implementation" class="project-section">
+      <h2>Implementation</h2>
+      <div class="implementation-grid">
+        <div><h3>One inspectable scene</h3><p>Shape definitions live in asset files. <code>scene.json</code> holds instances and spatial state. Planning and visualization read the same geometry.</p><p>Robot models supply link geometry and joint relationships. A deployment supplies observations, camera calibration, measured joints, and the interface that executes actions.</p><a class="text-link" href="README.md" data-source data-path="OVERVIEW.md">Read the architecture notes ↗</a></div>
+        <pre class="scene-example" aria-label="Excerpt of a recorded object instance"><code>// Object instance from the recorded scene
+"white": {
+  "asset": "block_shape",
+  "position": [0.004, -0.167, 0.815],
+  "quaternion": [1.0, -0.003, -0.009, 0.003],
+  "scale": [0.033, 0.033, 0.033]
+}
+// Positions and dimensions are in metres.
+// Quaternion order: [w, x, y, z].
+// Values above are rounded for display.</code></pre>
+      </div>
+      <div class="setup-grid">
+        <article class="setup-card"><h3>Run the viewer</h3><p>Python 3.11 · From the repository root</p><div class="code-block"><button class="copy-button" type="button" aria-label="Copy viewer commands" data-copy="viewer-code">Copy</button><pre><code id="viewer-code">python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python demo/app.py</code></pre></div><p>Open <a href="http://127.0.0.1:8765">127.0.0.1:8765</a>. Includes the recorded scene, robot models, and replay; no simulator connection is needed.</p></article>
+        <article class="setup-card"><h3>Use the agent skill</h3><p>Copy the complete folder into your workspace.</p><div class="code-block"><button class="copy-button" type="button" aria-label="Copy skill commands" data-copy="skill-code">Copy</button><pre><code id="skill-code">mkdir -p /path/to/workspace/.agents/skills
+cp -R skills/spatial-memory \
+  /path/to/workspace/.agents/skills/</code></pre></div><p>The skill includes its workflow, calculation scripts, and reference documents. Robot execution requires a configured deployment.</p></article>
+      </div>
+      <p class="copy-announcement visually-hidden" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+  <footer class="site-footer shell"><span>Spatial Memory</span><span>Project code: MIT · Bundled assets retain their upstream licenses.</span><a href="README.md" data-source>Repository ↗</a></footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+diff --git a/src/eval_client/main.py b/src/eval_client/main.py
+--- a/src/eval_client/main.py
++++ b/src/eval_client/main.py
+@@ -269,7 +269,8 @@
+     eval_cfg["seed"] = args_cli.seed
+     eval_cfg["physx_monitor_enabled"] = enable_monitor
+ 
+-    deploy_cfg = {}
++    deploy_yml_path = os.path.join(ROOT_DIR, "XPolicyLab", "policy", args_cli.policy_name, "deploy.yml")
++    deploy_cfg = load_yaml(deploy_yml_path) if os.path.isfile(deploy_yml_path) else {}
+     deploy_cfg["policy_name"] = args_cli.policy_name
+     deploy_cfg["port"] = args_cli.port
+     deploy_cfg["host"] = args_cli.host
