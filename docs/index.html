@@ -30,7 +30,7 @@
     <section class="text-section" id="approach">
       <h2>How it saves work</h2>
       <p><strong>Maintain a 3D reconstruction during execution.</strong> The agent describes object shapes at the start. The scene retains their geometry, dimensions, and spatial relationships; new observations update their placement as the robot acts.</p>
-      <p><strong>Estimate positions with a predefined geometry library.</strong> The agent selects image measurements. Existing scripts use camera calibration to calculate positions, orientations, and dimensions, then save the results in the scene. Later actions reuse these scripts and the saved geometry.</p>
+      <p><strong>Estimate positions with a predefined geometry library.</strong> The agent selects image measurements. Existing scripts use camera calibration to calculate positions, orientations, and dimensions, then save the results in the scene.</p>
     </section>
 
     <section id="recording" class="project-section">
@@ -55,7 +55,7 @@
         <p class="feedback">New observations update the same scene</p>
       </div>
       <div class="method-details">
-        <article><h3>Reusable shape, individual state</h3><p>The agent models object structure once. Similar objects reference the same asset, with their own position, orientation, scale, and color. Landmarks and shape parameters give calculations concrete features to measure.</p></article>
+        <article><h3>Reusable shape, individual state</h3><p>Similar objects reference the same asset, with their own position, orientation, scale, and color. Landmarks and shape parameters give calculations concrete features to measure.</p></article>
         <article><h3>Geometry from observations</h3><p>Scripts use camera calibration and image correspondences to estimate locations and fit dimensions. Multi-view measurements or known surfaces provide geometric constraints. Shape assumptions and measurement uncertainty still matter.</p></article>
         <article><h3>Updates during execution</h3><p>The agent plans action sequences with observation checkpoints. Measured robot state and attachment transforms can update poses programmatically; new visual measurements correct estimates. Geometry is revised when observations require it.</p></article>
       </div>
