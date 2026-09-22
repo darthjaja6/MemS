@@ -1,4 +1,4 @@
-# Spatial Memory project page
+# MemS project page
 
 A static project overview with method, recorded execution, and implementation details.
 No build step or remote dependencies. Project documentation and source live in the repository root, one directory above `docs`.

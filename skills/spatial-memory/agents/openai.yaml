@@ -1,4 +1,4 @@
 interface:
-  display_name: "Spatial Memory"
+  display_name: "MemS"
   short_description: "Remember space, compute motion, learn from outcomes"
   default_prompt: "Use $spatial-memory to understand my robot and surroundings, reuse spatial memory, and act with brief visual corrections."

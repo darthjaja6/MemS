@@ -5,7 +5,7 @@ description: >-
   set of scripts for the agent to call to calculate target position(s) of the robot in order to complete tasks
 ---
 
-# Spatial Memory
+# MemS
 
 Spatial memory describes the geometry and spatial relationships of the
 robot and its environment. It is stored in `scene.json`, which includes:

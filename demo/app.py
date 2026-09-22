@@ -191,7 +191,7 @@ def main():
 
     server = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
     print(
-        f"Spatial memory: http://127.0.0.1:{args.port}\nReading: {view.path}",
+        f"MemS: http://127.0.0.1:{args.port}\nReading: {view.path}",
         flush=True,
     )
     try:

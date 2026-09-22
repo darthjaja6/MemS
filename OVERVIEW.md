@@ -1,6 +1,6 @@
-# How Spatial Memory works
+# How MemS works
 
-Spatial Memory stores an agent's working model of a place as explicit geometry
+MemS stores an agent's working model of a place as explicit geometry
 and state. An object can keep its shape while its location changes; several
 objects can share one shape. New observations revise the model, and the agent
 can inspect or query it between observations.

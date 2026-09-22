@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#faf9f6">
-  <meta name="description" content="Spatial memory for faster agent-as-policy robot control. Reuse 3D scenes and geometry tools to reduce repeated spatial reasoning and code generation.">
+  <meta name="description" content="MemS: spatial memory for faster agent-as-policy robot control. Reuse 3D scenes and geometry tools to reduce repeated spatial reasoning and code generation.">
   <meta name="spatial-memory:repository" content="">
-  <title>Spatial Memory</title>
+  <title>MemS</title>
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
@@ -14,16 +14,16 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header shell">
-    <a class="wordmark" href="./"><img src="assets/mark.svg" width="26" height="30" alt="">Spatial Memory</a>
+    <a class="wordmark" href="./"><img src="assets/mark.svg" width="26" height="30" alt="">MemS</a>
     <nav aria-label="Sections"><a href="#approach">Approach</a><a href="#recording">Demo</a><a href="#implementation">Implementation</a></nav>
   </header>
   <main id="main" class="shell">
     <section class="project-header">
-      <h1>Spatial Memory</h1>
+      <h1>MemS</h1>
       <p class="subtitle">Spatial memory for faster agent-as-policy robot control.</p>
       <p class="summary">General-purpose agents are starting to control robots through images, reasoning, and tool calls. Recent <a href="https://openai.robocurve.org/gpt-6-astra/">GPT-6 Astra robot demonstrations</a> and <a href="https://agent-as-policy-2026.github.io/">Agent as Policy experiments</a> show what this makes possible: an agent can interpret a task, write code, command robot arms, and adjust its actions from feedback, without training a new policy for each task.</p>
       <p class="summary">But this flexibility is often very slow. Each round of observation, reasoning, and code generation adds time between actions; the Agent as Policy experiments report successful tasks taking tens of minutes. Repeatedly working out object geometry and rewriting spatial calculations adds work to that loop.</p>
-      <p class="summary">Spatial Memory targets that repeated spatial work. Build a 3D scene once, then update what changes. The agent reuses stored object geometry and calls existing geometry scripts to calculate subsequent targets, reducing repeated reconstruction and code generation.</p>
+      <p class="summary">MemS targets that repeated spatial work. Build a 3D scene once, then update what changes. The agent reuses stored object geometry and calls existing geometry scripts to calculate subsequent targets, reducing repeated reconstruction and code generation.</p>
       <div class="project-links"><a href="README.md" data-source>Code</a><a href="README.md" data-source data-path="skills/spatial-memory/SKILL.md">Agent skill</a><a href="#recording">Demo</a></div>
     </section>
 

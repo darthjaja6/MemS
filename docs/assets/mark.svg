@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-  <title>Spatial Memory spinning top</title>
+  <title>MemS spinning top</title>
   <g stroke="#b9452b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M32 7C30.6 21 28.7 28 24.5 31.5C21.5 33.7 13 34.7 11 38C9.7 40.2 20 42 32 42C44 42 54.3 40.2 53 38C51 34.7 42.5 33.7 39.5 31.5C35.3 28 33.4 21 32 7Z"/>
     <path d="M17 40.9C25 43 26 50 32 55C38 50 39 43 47 40.9" stroke-linejoin="miter"/>
