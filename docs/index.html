@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#faf9f6">
-  <meta name="description" content="Spatial Memory: faster robot decisions through reusable 3D scenes and a predefined geometry library. Method, demo, and open-source implementation.">
+  <meta name="description" content="Spatial memory for faster agent-as-policy robot control. Reuse 3D scenes and geometry tools to reduce repeated spatial reasoning and code generation.">
   <meta name="spatial-memory:repository" content="">
   <title>Spatial Memory — Project overview</title>
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
@@ -21,8 +21,10 @@
     <section class="project-header">
       <p class="eyebrow">Open-source research project</p>
       <h1>Spatial Memory</h1>
-      <p class="subtitle">Spatial memory for faster robot decisions</p>
-      <p class="summary">Build a 3D scene once, then update what changes. Spatial Memory lets an agent reuse its understanding of the environment and call existing geometry scripts for subsequent actions, reducing repeated reconstruction and code generation.</p>
+      <p class="subtitle">Spatial memory for faster agent-as-policy robot control.</p>
+      <p class="summary">General-purpose agents are starting to control robots through images, reasoning, and tool calls. Recent <a href="https://openai.robocurve.org/gpt-6-astra/">GPT-6 Astra robot demonstrations</a> and <a href="https://agent-as-policy-2026.github.io/">Agent as Policy experiments</a> show what this makes possible: an agent can interpret a task, write code, command robot arms, and adjust its actions from feedback, without training a new policy for each task.</p>
+      <p class="summary">But this flexibility is often very slow. Each round of observation, reasoning, and code generation adds time between actions; the Agent as Policy experiments report successful tasks taking tens of minutes. Repeatedly working out object geometry and rewriting spatial calculations adds work to that loop.</p>
+      <p class="summary">Spatial Memory targets that repeated spatial work. Build a 3D scene once, then update what changes. The agent reuses stored object geometry and calls existing geometry scripts to calculate subsequent targets, reducing repeated reconstruction and code generation.</p>
       <div class="project-links"><a href="README.md" data-source>Code ↗</a><a href="README.md" data-source data-path="skills/spatial-memory/SKILL.md">Agent skill ↗</a><a href="#recording">Watch the demo ↓</a></div>
     </section>
 

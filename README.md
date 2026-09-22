@@ -1,10 +1,23 @@
 # Spatial Memory
 
-**Spatial memory for faster robot decisions.**
+**Spatial memory for faster agent-as-policy robot control.**
 
-Build a 3D scene once, then update what changes. Spatial Memory lets an agent
-reuse its understanding of the environment and call existing geometry scripts
-for subsequent actions, reducing repeated reconstruction and code generation.
+General-purpose agents are starting to control robots through images, reasoning,
+and tool calls. Recent [GPT-6 Astra robot demonstrations](https://openai.robocurve.org/gpt-6-astra/)
+and [Agent as Policy experiments](https://agent-as-policy-2026.github.io/)
+show what this makes possible: an agent can interpret a task, write code, command
+robot arms, and adjust its actions from feedback, without training a new policy
+for each task.
+
+But this flexibility is often very slow. Each round of observation, reasoning,
+and code generation adds time between actions; the Agent as Policy experiments
+report successful tasks taking tens of minutes. Repeatedly working out object
+geometry and rewriting spatial calculations adds work to that loop.
+
+Spatial Memory targets that repeated spatial work. Build a 3D scene once, then
+update what changes. The agent reuses stored object geometry and calls existing
+geometry scripts to calculate subsequent targets, reducing repeated reconstruction
+and code generation.
 
 The approach has two parts:
 
