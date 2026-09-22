@@ -2,22 +2,12 @@
 
 **Spatial memory for faster agent-as-policy robot control.**
 
-General-purpose agents are starting to control robots through images, reasoning,
-and tool calls. Recent [GPT-6 Astra robot demonstrations](https://openai.robocurve.org/gpt-6-astra/)
-and [Agent as Policy experiments](https://agent-as-policy-2026.github.io/)
-show what this makes possible: an agent can interpret a task, write code, command
-robot arms, and adjust its actions from feedback, without training a new policy
-for each task.
+Agents using [GPT-6 Astra](https://openai.robocurve.org/gpt-6-astra/) can control
+robots through images and tool calls. But [agent-as-policy control](https://agent-as-policy-2026.github.io/)
+can be slow.
 
-But this flexibility is often very slow. Each round of observation, reasoning,
-and code generation adds time between actions; the Agent as Policy experiments
-report successful tasks taking tens of minutes. Repeatedly working out object
-geometry and rewriting spatial calculations adds work to that loop.
-
-MemS targets that repeated spatial work. Build a 3D scene once, then
-update what changes. The agent reuses stored object geometry and calls existing
-geometry scripts to calculate subsequent targets, reducing repeated reconstruction
-and code generation.
+MemS gives these agents reusable spatial memory: build a 3D scene once, update
+what changes, and use existing geometry tools to calculate action targets.
 
 The approach has two parts:
 

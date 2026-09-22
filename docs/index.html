@@ -21,9 +21,8 @@
     <section class="project-header">
       <h1>MemS</h1>
       <p class="subtitle">Spatial memory for faster agent-as-policy robot control.</p>
-      <p class="summary">General-purpose agents are starting to control robots through images, reasoning, and tool calls. Recent <a href="https://openai.robocurve.org/gpt-6-astra/">GPT-6 Astra robot demonstrations</a> and <a href="https://agent-as-policy-2026.github.io/">Agent as Policy experiments</a> show what this makes possible: an agent can interpret a task, write code, command robot arms, and adjust its actions from feedback, without training a new policy for each task.</p>
-      <p class="summary">But this flexibility is often very slow. Each round of observation, reasoning, and code generation adds time between actions; the Agent as Policy experiments report successful tasks taking tens of minutes. Repeatedly working out object geometry and rewriting spatial calculations adds work to that loop.</p>
-      <p class="summary">MemS targets that repeated spatial work. Build a 3D scene once, then update what changes. The agent reuses stored object geometry and calls existing geometry scripts to calculate subsequent targets, reducing repeated reconstruction and code generation.</p>
+      <p class="summary">Agents using <a href="https://openai.robocurve.org/gpt-6-astra/">GPT-6 Astra</a> can control robots through images and tool calls. But <a href="https://agent-as-policy-2026.github.io/">agent-as-policy control</a> can be slow.</p>
+      <p class="summary">MemS gives these agents reusable spatial memory: build a 3D scene once, update what changes, and use existing geometry tools to calculate action targets.</p>
       <div class="project-links"><a href="README.md" data-source>Code</a><a href="README.md" data-source data-path="skills/spatial-memory/SKILL.md">Agent skill</a><a href="#recording">Demo</a></div>
     </section>
 
