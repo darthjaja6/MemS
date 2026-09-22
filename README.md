@@ -29,7 +29,7 @@ The approach has two parts:
    positions, orientations, and dimensions, then save the results in the scene.
    Later actions reuse these scripts and the saved geometry.
 
-[Architecture](OVERVIEW.md) · [Agent skill](skills/spatial-memory/SKILL.md) · [Project page](https://darthjaja6.github.io/spatial_memory/)
+[Architecture](OVERVIEW.md) · [Agent skill](skills/spatial-memory/SKILL.md) · [Project page](https://darthjaja6.github.io/MemS/)
 
 ## Demo: spatial memory during a task
 
